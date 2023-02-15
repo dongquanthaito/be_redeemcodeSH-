@@ -17,16 +17,16 @@ module.exports = {
                 let data = {
                     "AccountsString": body.AccountsString,
                     "Amount": body.Amount,
-                    "AmountString": body.AmountString,
+                    "AmountString": body.Amount,
                     "Audit": body.Audit,
-                    "AuditType": body.AuditType,
+                    "AuditType": "Discount",
                     "DepositToken": body.DepositToken,
-                    "IsReal": body.IsReal,
+                    "IsReal": false,
                     "Memo": body.Memo,
                     "Password": "123456",
                     "PortalMemo": body.PortalMemo,
                     "TimeStamp": body.TimeStamp,
-                    "Type": body.Type
+                    "Type": 5
                 }
                     let config = {
                     method: 'post',
@@ -49,11 +49,19 @@ module.exports = {
                         res.json(error);
                     });        
             } catch (error) {
-                res.json(error)
+                res.json({
+                    code: 502,
+                    mess: "Bad Gateway",
+                    err: error
+                })
             }
         })
         .catch(function (error) {
-        res.json(error);
+            res.json({
+                code: 502,
+                mess: "Bad Gateway",
+                err: error
+            })
         });
     }
 }

@@ -7,7 +7,7 @@ const auth = require('../middlewares/auth.middleware')
 
 const { findPromoCode, postPromoCode, deletePromoCode, updateCode } = require('../controllers/promoCode.controller')
 
-Router.route('/').get(auth, role([roleType.SUPERADMIN, roleType.ADMIN]), findPromoCode)
+Router.route('/').get(findPromoCode)
 Router.route('/').post(postPromoCode)
 Router.route('/').delete(auth, role([roleType.SUPERADMIN, roleType.ADMIN]), deletePromoCode)
 Router.route('/').patch(updateCode)

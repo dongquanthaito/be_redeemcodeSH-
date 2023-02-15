@@ -25,9 +25,21 @@ module.exports = {
         let site = query.site
         let point = query.point
         let user_used = query.user_used
+        let ip = query.ip
+        let fp = query.fp
+        let exp_code = query.exp_code
         
         for(i = 0; i < list_code_length; i++) {
-            codeBox.push({date_code: date_code, site: site, promo_code: getRandom(code_length), point: point, user_used: user_used})
+            codeBox.push({
+              date_code: date_code, 
+              site: site, 
+              promo_code: getRandom(code_length), 
+              point: point, 
+              user_used: user_used,
+              ip: ip,
+              fp: fp,
+              exp_code: exp_code
+            })
         }
 
         let data = JSON.stringify(codeBox);
@@ -47,7 +59,8 @@ module.exports = {
               res.json({
                 valid: true,
                 codCount: codeBox.length,
-                mess: "Thêm code thành công"
+                mess: "Thêm code thành công",
+                detail: codeBox
               })
             } else {
               res.json({

@@ -7,7 +7,11 @@ module.exports = {
         let {...body} = req.body
         try {
             let createAcc = await accountModel.create(body)
-            res.json(createAcc)
+            res.json({
+                statusCode: 200,
+                valid: true,
+                detail: createAcc
+            })
         } catch (error) {
             res.json({
                 code: 502,
@@ -53,8 +57,11 @@ module.exports = {
         let {...query} = req.query
         try {
             let read = await accountModel.find(query)
-            
-            res.json(read)
+            res.json({
+                statusCode: 200,
+                valid: true,
+                detail: read
+            })
         } catch (error) {
             res.json({
                 code: 502,
@@ -67,12 +74,18 @@ module.exports = {
     updateAcc: async(req, res) => {
         let {...body} = req.body
         try {
-            let update = await accountModel.findOneAndUpdate({username: body.username}, body, {new: true})
+            let update = await accountModel.findOneAndUpdate({username: body.username}, body)
             if(update) {
-                res.json(update)
+                res.json({
+                    statusCode: 200,
+                    valid: true,
+                    detail: update
+                })
             } else {
-                let create = await accountModel.create(body)
-                res.json(create)
+                res.json({
+                    status_code: 404,
+                    mess: "Không tìm thấy tài khoản"
+                })
             }
         } catch (error) {
             res.json({
@@ -95,5 +108,39 @@ module.exports = {
                 err: error
             })
         }
+    },
+
+    changePass: async(req, res) => {
+        let {...body} = req.body
+        if(body.role) {
+            res.json({
+                code: 403,
+                status: "Forbidden",
+            })
+        } else {
+
+            try {
+                let update = await accountModel.findOneAndUpdate({username: body.username}, {password: body.password})
+                if(update) {
+                    res.json({
+                        statusCode: 200,
+                        valid: true,
+                        detail: update
+                    })
+                } else {
+                    res.json({
+                        status_code: 404,
+                        mess: "Không tìm thấy tài khoản"
+                    })
+                }
+            } catch (error) {
+                res.json({
+                    code: 502,
+                    mess: "Bad Gateway",
+                    err: error
+                })
+            }
+        }
+        
     }
 }

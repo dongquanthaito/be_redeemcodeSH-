@@ -24,6 +24,10 @@ module.exports = async(req,res,next)=>{
             })
         }
     } catch (error) {
-        res.json(error)
+        res.json({
+            statusCode: 403,
+            err: 'Token Error',
+            detail: error
+        })
     }
 }

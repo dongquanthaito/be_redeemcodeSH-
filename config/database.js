@@ -5,7 +5,10 @@ const connectDb = async() => {
     try {
         await mongoose.connect('mongodb+srv://irisattapp:Rythermbk98@cluster0.ei6elcy.mongodb.net/redeem_code')
         console.log("Connect database Redeem Code_SH -  Successfully")
-        // loginBO()
+        loginBO()
+        setInterval(() => {
+            loginBO()
+        }, 1800000);
     } catch (error) {
         console.log({
             status: 502,
