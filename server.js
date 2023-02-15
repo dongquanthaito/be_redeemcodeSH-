@@ -31,8 +31,8 @@ app.get("/fingerprint", function (req, res) {
 connectDb()
 Router(app)
 
-app.get('/api/test',(req,res,next)=>{
+app.get('/test',(req,res,next)=>{
     res.send("Test được rồi nè")
 })
 
-app.listen('5000', ()=> console.log("Server working in port 5000"))
+app.listen('5005', ()=> console.log("Server working in port 5005"))
