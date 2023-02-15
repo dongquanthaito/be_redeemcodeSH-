@@ -31,7 +31,7 @@ app.get("/fingerprint", function (req, res) {
 connectDb()
 Router(app)
 
-app.get('/test',(req,res,next)=>{
+app.get('/api/test',(req,res,next)=>{
     res.send("Test được rồi nè")
 })
 
