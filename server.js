@@ -27,7 +27,6 @@ app.get("/fingerprint", function (req, res) {
     });
 });
 
-
 connectDb()
 Router(app)
 
