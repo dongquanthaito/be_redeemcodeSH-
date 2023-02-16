@@ -46,7 +46,7 @@ module.exports = {
           
           let config = {
             method: 'post',
-            url: 'http://localhost:5000/code',
+            url: 'https://api.shbet.ski/code',
             headers: { 
               'Content-Type': 'application/json'
             },

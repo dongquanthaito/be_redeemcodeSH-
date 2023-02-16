@@ -4,7 +4,7 @@ module.exports = {
     shbet: async (req, res)=>{
         let config = {
             method: 'get',
-            url: 'http://localhost:5000/get-token-bo',
+            url: 'https://api.shbet.ski/get-token-bo',
         };
           
         axios(config)
