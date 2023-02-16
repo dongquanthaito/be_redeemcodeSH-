@@ -131,5 +131,46 @@ module.exports = {
             })
         }
         
-    }
+    },
+
+    findCodeClient: async(req, res) => {
+        let {...query} = req.query
+        try {
+            if(!query.promo_code) {
+                res.json({
+                    statusCode: 404,
+                    valid: false,
+                    mess: 'Not found'
+                })
+            } else {
+                let find = await promoCodeModel.find(query)
+                if(find.length == 0) {
+                    res.json({
+                        statusCode: 404,
+                        valid: false,
+                        mess: 'Not found'
+                    })
+                } else {
+                    res.json({
+                        statusCode: 200,
+                        valid: true,
+                        detail: [
+                            {
+                                promo_code: find[0].promo_code,
+                                point: find[0].point,
+                                user_used: find[0].user_used,
+                                exp_code: find[0].exp_code
+                            }
+                        ]
+                    })
+                }
+            }
+        } catch (error) {
+            res.json({
+                code: 502,
+                mess: "Bad Gateway",
+                err: error
+            })
+        }
+    },
 }
