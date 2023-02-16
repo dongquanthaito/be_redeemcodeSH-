@@ -136,13 +136,7 @@ module.exports = {
     findCodeClient: async(req, res) => {
         let {...query} = req.query
         try {
-            if(!query.promo_code) {
-                res.json({
-                    statusCode: 404,
-                    valid: false,
-                    mess: 'Not found'
-                })
-            } else {
+            if(query.promo_code || query.user_used) {
                 let find = await promoCodeModel.find(query)
                 if(find.length == 0) {
                     res.json({
@@ -164,6 +158,12 @@ module.exports = {
                         ]
                     })
                 }
+            } else if(!query.promo_code || !query.user_used) {
+                res.json({
+                    code: 502,
+                    mess: "Bad Gateway",
+                    err: error
+                })
             }
         } catch (error) {
             res.json({
