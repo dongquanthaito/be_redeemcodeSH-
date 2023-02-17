@@ -153,6 +153,7 @@ module.exports = {
                                 promo_code: find[0].promo_code,
                                 point: find[0].point,
                                 user_used: find[0].user_used,
+                                used_time: find[0].used_time,
                                 exp_code: find[0].exp_code
                             }
                         ]
