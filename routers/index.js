@@ -12,6 +12,7 @@ const changePass = require('./changePass.router')
 const ipfp = require('./ipfp.route')
 const getClientIPFP = require('./getClientIPFP.route')
 const findCodeClient = require('./findCodeClient.route')
+const client = require('./client.route')
 
 module.exports = (app) => {{
     app.use('/code', codePromo)
@@ -28,4 +29,5 @@ module.exports = (app) => {{
     app.use('/ipfp', ipfp)
     app.use('/get-client-ipfp', getClientIPFP)
     app.use('/get-code-client', findCodeClient)
+    app.use('/client', client)
 }}

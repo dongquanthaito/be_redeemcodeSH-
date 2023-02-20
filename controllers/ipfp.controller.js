@@ -31,23 +31,12 @@ module.exports = {
             })
 
             if(box.length > 0) {
-                res.json({
-                    code: 200,
-                    status: 'fB',
-                    valid: false,
-                })       
+                return false 
             } else if(box.length == 0) {
-                res.json({
-                    code: 200,
-                    valid: true
-                })
+                return true
             }
         } catch (error) {
-            res.json({
-                code: 502,
-                mess: "Bad Gateway",
-                err: error
-            })
+            return 502
         }
     }
 }

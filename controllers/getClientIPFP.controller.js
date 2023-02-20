@@ -13,18 +13,14 @@ module.exports = {
                 ]
             }))
             
-            res.json({
+            return({
                 status_code: 200,
                 valid: true,
                 ip: req.ip,
                 fp: req.fingerprint.hash
             });
         } catch (error) {
-            res.json({
-                code: 502,
-                mess: "Bad Gateway",
-                err: error
-            })
+            return 502
         }
     }
 }
