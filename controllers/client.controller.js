@@ -16,6 +16,7 @@ module.exports = {
         })
         let {...query} = req.query
         let fpResult = req.fingerprint.hash
+        console.log(fpResult)
         try {
             let fp = fpResult   //Kiểm tra FB
             let box = []
