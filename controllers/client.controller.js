@@ -5,6 +5,7 @@ const ipfpModel = require("../models/ipfp.model")
 const { getDepositTokenClient } = require('./depositToken.controller')
 const { shbetClient } = require('./addpoint.controller')
 const { getTimeZoneClient } = require('./getTimeZone.controller')
+const { getMemberBOClient } = require('./getMemberBO.controller')
 
 module.exports = {
     getCodeClient: async(req, res) => {
@@ -17,7 +18,6 @@ module.exports = {
         })
         let {...query} = req.query
         let fpResult = req.fingerprint.hash
-        console.log(fpResult)
         try {
             let fp = fpResult   //Kiểm tra FB
             let box = []
