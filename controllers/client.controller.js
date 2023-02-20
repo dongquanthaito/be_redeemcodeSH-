@@ -25,9 +25,8 @@ module.exports = {
                 if(fp == el.fp)
                 box.push('1')
             })
-            console.log('1')
             if(box.length > 0) {
-            console.log('2')
+
 
                 res.json ({
                     status_code: 200,
@@ -36,11 +35,12 @@ module.exports = {
                     text_mess: 'Xin quý khách vui lòng kiểm tra và thử lại.'
                 })
             } else if(box.length == 0) {    //Nếu không có FB
-            console.log('3')
+            
 
                 let find = await promoCodeModel.find(query) //Tìm code
                 
                 if(find.length == 0) {  //Không có code
+                    console.log('1')
                     res.json({
                         status_code: 404,
                         valid: false,
@@ -48,7 +48,9 @@ module.exports = {
                         text_mess: 'Xin quý khách vui lòng kiểm tra và thử lại.'
                     })
                 } else {    //Có code
+                    console.log('2')
                     let timeGlobal = await getTimeZoneClient()
+                    console.log('3')
 
                     if(timeGlobal == false) {
                         res.json({  
@@ -58,6 +60,8 @@ module.exports = {
                             text_mess: 'Mất kết nối đến máy chủ. Xin vui lòng thử lại.'
                         })
                     } else {
+                    console.log('4')
+
                         let timeStamp = new Date(timeGlobal.dateTime).getTime()
                         let expTime = find[0].exp_code
     
