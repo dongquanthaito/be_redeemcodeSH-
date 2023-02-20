@@ -123,7 +123,7 @@ module.exports = {
             }
         } catch (error) {
             res.json({  
-                status_code: 502,
+                status_code: 501,
                 valid: false,
                 title_mess: 'Lỗi hệ thống',
                 text_mess: 'Mất kết nối đến máy chủ. Xin vui lòng thử lại.'
