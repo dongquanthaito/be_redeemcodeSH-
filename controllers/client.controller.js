@@ -4,6 +4,7 @@ const promoCodeModel = require("../models/promoCode.model")
 const ipfpModel = require("../models/ipfp.model")
 const { getDepositTokenClient } = require('./depositToken.controller')
 const { shbetClient } = require('./addpoint.controller')
+const { getTimeZoneClient } = require('./getTimeZone.controller')
 
 module.exports = {
     getCodeClient: async(req, res) => {
@@ -40,7 +41,7 @@ module.exports = {
                 let find = await promoCodeModel.find(query) //Tìm code
                 
                 if(find.length == 0) {  //Không có code
-                    console.log('1')
+                    
                     res.json({
                         status_code: 404,
                         valid: false,
@@ -48,9 +49,7 @@ module.exports = {
                         text_mess: 'Xin quý khách vui lòng kiểm tra và thử lại.'
                     })
                 } else {    //Có code
-                    console.log('2')
                     let timeGlobal = await getTimeZoneClient()
-                    console.log('3')
 
                     if(timeGlobal == false) {
                         res.json({  
@@ -60,7 +59,7 @@ module.exports = {
                             text_mess: 'Mất kết nối đến máy chủ. Xin vui lòng thử lại.'
                         })
                     } else {
-                    console.log('4')
+                    
 
                         let timeStamp = new Date(timeGlobal.dateTime).getTime()
                         let expTime = find[0].exp_code
