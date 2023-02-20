@@ -1,23 +1,22 @@
-const express = require('express')
 const Fingerprint = require('express-fingerprint')
 const { findMemoClient } = require("./findMemo.controller")
 const promoCodeModel = require("../models/promoCode.model")
 const ipfpModel = require("../models/ipfp.model")
 const { getDepositTokenClient } = require('./depositToken.controller')
 const { shbetClient } = require('./addpoint.controller')
-const app = express()
+
 
 
 
 module.exports = {
     getCodeClient: async(req, res) => {
-        app.use(Fingerprint({
+        Fingerprint({
             parameters:[
                 Fingerprint.useragent,
                 Fingerprint.acceptHeaders,
                 Fingerprint.geoip,
             ]
-        }))
+        })
         let {...query} = req.query
         let fpResult = req.fingerprint.hash    
         try {
