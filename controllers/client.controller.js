@@ -5,9 +5,6 @@ const ipfpModel = require("../models/ipfp.model")
 const { getDepositTokenClient } = require('./depositToken.controller')
 const { shbetClient } = require('./addpoint.controller')
 
-
-
-
 module.exports = {
     getCodeClient: async(req, res) => {
         Fingerprint({
@@ -18,9 +15,8 @@ module.exports = {
             ]
         })
         let {...query} = req.query
-        let fpResult = req.fingerprint.hash    
+        let fpResult = req.fingerprint.hash
         try {
-
             let fp = fpResult   //Kiểm tra FB
             let box = []
             let findFP = await ipfpModel.find(query)
@@ -123,7 +119,7 @@ module.exports = {
             }
         } catch (error) {
             res.json({  
-                status_code: 501,
+                status_code: 502,
                 valid: false,
                 title_mess: 'Lỗi hệ thống',
                 text_mess: 'Mất kết nối đến máy chủ. Xin vui lòng thử lại.'
