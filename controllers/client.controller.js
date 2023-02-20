@@ -25,7 +25,10 @@ module.exports = {
                 if(fp == el.fp)
                 box.push('1')
             })
+            console.log('1')
             if(box.length > 0) {
+            console.log('2')
+
                 res.json ({
                     status_code: 200,
                     valid: false,
@@ -33,6 +36,8 @@ module.exports = {
                     text_mess: 'Xin quý khách vui lòng kiểm tra và thử lại.'
                 })
             } else if(box.length == 0) {    //Nếu không có FB
+            console.log('3')
+
                 let find = await promoCodeModel.find(query) //Tìm code
                 
                 if(find.length == 0) {  //Không có code
