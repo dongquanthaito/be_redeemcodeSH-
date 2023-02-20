@@ -7,16 +7,17 @@ const { getDepositTokenClient } = require('./depositToken.controller')
 const { shbetClient } = require('./addpoint.controller')
 const app = express()
 
-app.use(Fingerprint({
-    parameters:[
-        Fingerprint.useragent,
-        Fingerprint.acceptHeaders,
-        Fingerprint.geoip,
-    ]
-}))
+
 
 module.exports = {
     getCodeClient: async(req, res) => {
+        app.use(Fingerprint({
+            parameters:[
+                Fingerprint.useragent,
+                Fingerprint.acceptHeaders,
+                Fingerprint.geoip,
+            ]
+        }))
         let {...query} = req.query
         let fpResult = req.fingerprint.hash    
         try {
