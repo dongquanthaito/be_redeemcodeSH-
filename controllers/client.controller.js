@@ -19,23 +19,23 @@ module.exports = {
         let {...query} = req.query
         let fpResult = req.fingerprint.hash
         try {
-            let fp = fpResult   //Kiểm tra FB
-            let box = []
-            let findFP = await ipfpModel.find(query)
-            findFP.forEach((el) => {
-                if(fp == el.fp)
-                box.push('1')
-            })
-            if(box.length > 0) {
+            // let fp = fpResult   //Kiểm tra FB
+            // let box = []
+            // let findFP = await ipfpModel.find(query)
+            // findFP.forEach((el) => {
+            //     if(fp == el.fp)
+            //     box.push('1')
+            // })
+            // if(box.length > 0) {
 
 
-                res.json ({
-                    status_code: 200,
-                    valid: false,
-                    title_mess: 'Quý khách đã nhận khuyến mãi này!',
-                    text_mess: 'Xin quý khách vui lòng kiểm tra và thử lại.'
-                })
-            } else if(box.length == 0) {    //Nếu không có FB
+            //     res.json ({
+            //         status_code: 200,
+            //         valid: false,
+            //         title_mess: 'Quý khách đã nhận khuyến mãi này!',
+            //         text_mess: 'Xin quý khách vui lòng kiểm tra và thử lại.'
+            //     })
+            // } else if(box.length == 0) {    //Nếu không có FB
             
 
                 let find = await promoCodeModel.find(query) //Tìm code
@@ -125,7 +125,7 @@ module.exports = {
                         }
                     }
                 }
-            }
+            // }
         } catch (error) {
             res.json({  
                 status_code: 502,
